@@ -22,11 +22,6 @@ namespace ColorPicker.UserControls
         public static readonly DependencyProperty HeadYProperty
             = DependencyProperty.Register(nameof(HeadY), typeof(double), typeof(SquareSlider),
                 new PropertyMetadata(0.0));
-
-        public static readonly DependencyProperty PickerTypeProperty
-            = DependencyProperty.Register(nameof(PickerType), typeof(PickerType), typeof(SquareSlider),
-                new PropertyMetadata(PickerType.HSV, OnColorSpaceChanged));
-
         private WriteableBitmap _gradientBitmap;
 
         private double _rangeX;
@@ -59,12 +54,6 @@ namespace ColorPicker.UserControls
         {
             get => (double)GetValue(HeadYProperty);
             set => SetValue(HeadYProperty, value);
-        }
-
-        public PickerType PickerType
-        {
-            get => (PickerType)GetValue(PickerTypeProperty);
-            set => SetValue(PickerTypeProperty, value);
         }
 
         public double RangeX
@@ -119,17 +108,6 @@ namespace ColorPicker.UserControls
             GradientBitmap.WritePixels(new Int32Rect(0, 0, w, h), pixels, w * 3, 0);
         }
 
-        private static void OnColorSpaceChanged(DependencyObject d, DependencyPropertyChangedEventArgs args)
-        {
-            var sender = (SquareSlider)d;
-            if ((PickerType)args.NewValue == PickerType.HSV)
-                sender.colorSpaceConversionMethod = ColorSpaceHelper.HsvToRgb;
-            else
-                sender.colorSpaceConversionMethod = ColorSpaceHelper.HslToRgb;
-
-            sender.RecalculateGradient();
-        }
-
         private static void OnHueChanged(DependencyObject d, DependencyPropertyChangedEventArgs args)
         {
             ((SquareSlider)d).RecalculateGradient();
@@ -140,15 +118,9 @@ namespace ColorPicker.UserControls
             var sqs = (SquareSlider)sender;
 
             if (IsEnabled)
-                if (sqs.PickerType == PickerType.HSV)
-                    sqs.colorSpaceConversionMethod = ColorSpaceHelper.HsvToRgb;
-                else
-                    sqs.colorSpaceConversionMethod = ColorSpaceHelper.HslToRgb;
+                sqs.colorSpaceConversionMethod = ColorSpaceHelper.HsvToRgb;
             else
-                if (sqs.PickerType == PickerType.HSV)
-                    sqs.colorSpaceConversionMethod = ColorSpaceHelper.HsvToGray;
-                else
-                    sqs.colorSpaceConversionMethod = ColorSpaceHelper.HslToGray;
+                sqs.colorSpaceConversionMethod = ColorSpaceHelper.HsvToGray;
 
             sqs.RecalculateGradient();
         }

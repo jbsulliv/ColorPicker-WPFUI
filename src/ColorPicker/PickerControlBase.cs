@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using ColorPicker.Models;
+using ColorPicker.EventArg;
 
 namespace ColorPicker
 {
@@ -10,7 +11,7 @@ namespace ColorPicker
     {
         public static readonly DependencyProperty ColorStateProperty =
             DependencyProperty.Register(nameof(ColorState), typeof(ColorState), typeof(PickerControlBase),
-                new PropertyMetadata(new ColorState(0, 0, 0, 1, 0, 0, 0, 0, 0, 0), OnColorStatePropertyChange));
+                new PropertyMetadata(new ColorState(0, 0, 0, 1, 0, 0, 0), OnColorStatePropertyChange));
 
         public static readonly DependencyProperty SelectedColorProperty =
             DependencyProperty.Register(nameof(SelectedColor), typeof(Color), typeof(PickerControlBase),

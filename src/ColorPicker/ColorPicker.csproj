@@ -43,7 +43,6 @@ Originally developed for PixiEditor: https://github.com/PixiEditor/PixiEditor.</
             <Pack>True</Pack>
             <PackagePath></PackagePath>
         </None>
-        <None Include="README.md" Link="README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -53,11 +52,4 @@ Originally developed for PixiEditor: https://github.com/PixiEditor/PixiEditor.</
     <ItemGroup>
         <Resource Include="Images\transparentbg_mini.png" />
     </ItemGroup>
-
-
-    <ItemGroup>
-        <ProjectReference Include="..\ColorPicker.Models\ColorPicker.Models.csproj" />
-    </ItemGroup>
-
-
 </Project>
