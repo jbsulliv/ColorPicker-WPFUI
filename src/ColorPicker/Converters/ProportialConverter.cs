@@ -8,9 +8,20 @@ namespace ColorPicker.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] is double && values[1] is double && values[2] is double)
-                return (double)values[0] * ((double)values[1] / (double)values[2]);
-            return 0;
+            if (values.Length >= 3 && values[0] is double size && values[1] is double pos && values[2] is double range)
+            {
+                if (range == 0) return 0.0;
+
+                double result = size * (pos / range);
+
+                if (values.Length > 3 && values[3] != null && values[3].ToString() == "True")
+                {
+                    return size - result;
+                }
+
+                return result;
+            }
+            return 0.0;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

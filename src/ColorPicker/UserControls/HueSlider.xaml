@@ -4,7 +4,7 @@
              x:ClassModifier="internal"
              x:Name="uc">
     <Grid>
-        <Border CornerRadius="2" BorderThickness="1" BorderBrush="#33000000">
+        <Border CornerRadius="4" BorderThickness="1" BorderBrush="#3F3F46" ClipToBounds="True">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Color="#FF0000" Offset="0.0" />
@@ -21,9 +21,8 @@
         <Slider Orientation="Vertical" 
                 Minimum="0" Maximum="360" 
                 Value="{Binding ElementName=uc, Path=Value, Mode=TwoWay}"
-                IsDirectionReversed="False"
-                IsMoveToPointEnabled="True"
-                PreviewMouseWheel="OnPreviewMouseWheel">
+                IsDirectionReversed="True"
+                IsMoveToPointEnabled="True">
             <Slider.Style>
                 <Style TargetType="Slider">
                     <Setter Property="Background" Value="Transparent"/>
@@ -33,17 +32,15 @@
                                 <Grid Background="Transparent">
                                     <Track x:Name="PART_Track">
                                         <Track.Thumb>
-                                            <Thumb Height="10" Width="26">
+                                            <Thumb Height="8" Width="24">
                                                 <Thumb.Template>
                                                     <ControlTemplate>
-                                                        <Grid>
-                                                            <Border BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="1">
-                                                                <Border.Effect>
-                                                                    <DropShadowEffect BlurRadius="3" ShadowDepth="0" Opacity="0.6"/>
-                                                                </Border.Effect>
-                                                            </Border>
-                                                            <Rectangle Fill="#88000000" Height="1" Width="14" VerticalAlignment="Center"/>
-                                                        </Grid>
+                                                        <Border Background="White" BorderBrush="#3F3F46" 
+                                                                BorderThickness="1" CornerRadius="2">
+                                                            <Border.Effect>
+                                                                <DropShadowEffect BlurRadius="3" ShadowDepth="0.5" Opacity="0.5"/>
+                                                            </Border.Effect>
+                                                        </Border>
                                                     </ControlTemplate>
                                                 </Thumb.Template>
                                             </Thumb>
